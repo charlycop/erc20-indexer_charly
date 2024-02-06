@@ -12,6 +12,8 @@ import {
 import { Alchemy, Network, Utils } from 'alchemy-sdk';
 import { useState } from 'react';
 
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+
 function App() {
   const [userAddress, setUserAddress] = useState('');
   const [results, setResults] = useState([]);
@@ -20,11 +22,14 @@ function App() {
 
   async function getTokenBalance() {
     const config = {
-      apiKey: '<-- COPY-PASTE YOUR ALCHEMY API KEY HERE -->',
-      network: Network.ETH_MAINNET,
+      apiKey: 'qPSAPMQboYBPzLIB19D37IPPxMJy8taN',
+      network: Network.ETH_GOERLI,
     };
 
     const alchemy = new Alchemy(config);
+
+    
+
     const data = await alchemy.core.getTokenBalances(userAddress);
 
     setResults(data);
